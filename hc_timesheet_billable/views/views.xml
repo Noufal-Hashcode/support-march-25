@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+
+        <record id="group_hc_timesheet_factor" model="res.groups">
+            <field name="name">Billable group</field>
+        </record>
+
+
+        <record id="hr_employee_form_view_inherit_proforma" model="ir.ui.view">
+            <field name="name">hr.employee.form.view.inherit</field>
+            <field name="model">hr.employee</field>
+            <field name="inherit_id" ref="hr.view_employee_form"/>
+            <field name="arch" type="xml">
+                <xpath expr="//field[@name='employee_type']" position="after">
+                    <field name="ratio_factor" groups="hc_timesheet_billable.group_hc_timesheet_factor"/>
+                </xpath>
+            </field>
+        </record>
+
+
+        <record id="timesheet_form_view_inherit_proforma" model="ir.ui.view">
+            <field name="name">timesheet.form.view.inherit</field>
+            <field name="model">account.analytic.line</field>
+            <field name="inherit_id" ref="hr_timesheet.hr_timesheet_line_tree"/>
+            <field name="arch" type="xml">
+                <xpath expr="//field[@name='unit_amount']" position="before">
+                    <field name="ratio_factor" groups="hc_timesheet_billable.group_hc_timesheet_factor"/>
+                </xpath>
+                <xpath expr="//field[@name='unit_amount']" position="after">
+                    <field name="billable" groups="hc_timesheet_billable.group_hc_timesheet_factor"/>
+                </xpath>
+            </field>
+        </record>
+
+    </data>
+</odoo>
