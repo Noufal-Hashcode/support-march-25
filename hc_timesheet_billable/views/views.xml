@@ -28,7 +28,7 @@
                     <field name="ratio_factor" groups="hc_timesheet_billable.group_hc_timesheet_factor"/>
                 </xpath>
                 <xpath expr="//field[@name='unit_amount']" position="after">
-                    <field name="billable" groups="hc_timesheet_billable.group_hc_timesheet_factor"/>
+                    <field name="billable_value" groups="hc_timesheet_billable.group_hc_timesheet_factor"/>
                 </xpath>
             </field>
         </record>
